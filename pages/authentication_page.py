@@ -22,3 +22,20 @@ class AuthenticationPage:
             locator="//div[@id='center_column']/h1[@class='page-heading']",
             locatorType="xpath"
         )
+
+        # self.create_account_error_label = Element(
+        #     locator="",
+        #     locatorType=""
+        # )
+
+        ppp = Element(
+            locator="button#SubmitLogin",
+            locatorType="css"
+        )
+
+# class TestClass(Element):
+#     xxx = Element(
+#
+#
+#     )
+#

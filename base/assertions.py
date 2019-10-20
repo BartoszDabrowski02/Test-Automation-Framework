@@ -13,12 +13,20 @@ def _default_assertion_message():
 # Jak to kurfa działa?
 
 
-class SeleniumAssertionBasic(object):
+class SeleniumAssertionBasic:
     # TO-DO dodać opis
 
     def assert_element_text_equal(self, element, excepted_text, msg=None):
-        actual_text = element.text
+        actual_text = element.get_text()
+        print(actual_text)
         if actual_text != excepted_text:
             if msg is None:
                 msg = _default_assertion_message() % (element, excepted_text, actual_text)
             raise Exception(msg)  # ???
+
+    # def assert_element_text_equal(self, element, excepted_text, msg=None):
+    #     actual_text = element.text
+    #     if actual_text != excepted_text:
+    #         if msg is None:
+    #             msg = _default_assertion_message() % (element, excepted_text, actual_text)
+    #         raise Exception(msg)  # ???

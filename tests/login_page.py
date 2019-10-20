@@ -36,9 +36,14 @@ class LoginTests(SeleniumAssertionBasic):
         page.create_an_account_email_address_label.click()
         page.create_an_account_email_address_input.click()
 
+        print("*A*")
+        self.assert_element_text_equal(
+            page.create_an_account_email_address_label,
+            "Email address"
+        )
 
         print("*1*")
-        page.create_an_account_email_address_label.get_text()
+        page.create_an_account_email_address_label.print_text()
 
         print("*2*")
         print(self.browser.find_element_by_xpath("//div[@id='center_column']/h1[@class='page-heading']").text)
