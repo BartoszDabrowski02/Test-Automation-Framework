@@ -3,22 +3,23 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class Element:
-    def __init__(self, locator, locatorType="id"):
+    def __init__(self, locator, locatorType='id', description=''):
         self.locator = locator
         self.locatorType = locatorType
+        self.description = description
+        # W przyszłości - wait_for_visible
         # self.element = self.driver.get_element(locator, locatorType)
+
+    def __str__(self):
+        return self.description
 
     @property
     def element(self):
         self.current_element = self.driver.get_element(self.locator, self.locatorType)
         return self.current_element
 
-
     def click(self):
-        # try:
-            self.element.click()
-        # except:
-        #     print("Cannot click on button with locator " + self.locator + " and locator type: " + self.locatorType)
+        self.element.click()
 
     def get_text(self):
         return self.element.text
@@ -26,22 +27,22 @@ class Element:
     def print_text(self):
         print(self.element.text)
 
-    def send_keys(self, keys):
-        return self.element.send_keys(keys)
+
 
 class Button(Element):
     """
     Podstawowy przycisk.
     """
-    pass
+
+
+
 
 class Input(Element):
     """
     Pole tekstowe
     """
-    pass
-
-
+    def send_keys(self, keys):
+        return self.element.send_keys(keys)
 
 
 

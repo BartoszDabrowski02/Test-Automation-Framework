@@ -13,7 +13,6 @@ class HomePage:
             locator=".login",
             locatorType="css",
         )
-
         self.best_sellers_button = Button(
             locator=".blockbestsellers",
             locatorType="css",

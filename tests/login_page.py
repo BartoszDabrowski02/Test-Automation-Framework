@@ -6,6 +6,7 @@ from pages.authentication_page import AuthenticationPage
 from base.assertions import SeleniumAssertionBasic
 
 from base.base_methods import SeleniumDriver
+from base.support import create_unique_email
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -32,53 +33,18 @@ class LoginTests(SeleniumAssertionBasic):
         page.sign_button.click()
 
         page = self.set_page(AuthenticationPage)
-        page.create_an_account_button.click()
-        page.create_an_account_email_address_label.click()
-        page.create_an_account_email_address_input.click()
-
-        print("*A*")
         self.assert_element_text_equal(
-            page.create_an_account_email_address_label,
-            "Email address"
+            page.authentication_label,
+            "AUTHENTICATION"
         )
+        page.create_an_account_email_address_input.send_keys(create_unique_email())
+        page.create_an_account_button.click()
 
-        print("*1*")
-        page.create_an_account_email_address_label.print_text()
-
-        print("*2*")
-        print(self.browser.find_element_by_xpath("//div[@id='center_column']/h1[@class='page-heading']").text)
-        print("*3*")
-        self.browser.find_element_by_xpath("//div[@id='center_column']/h1[@class='page-heading']").text
-
-        print("**Y**")
-        self.browser.find_element_by_xpath(".//input[@name='email_create']").send_keys("XYZ")
-        print("**X**")
-        page.create_an_account_email_address_input.send_keys("abc")
-
-
-        print("*4*")
-        page.create_an_account_email_address_label.text
-
-
-
-
-        # self.driver.get_element("//div[@id='center_column']/h1[@class='page-heading']", By.XPATH)
-        #
-        # page.create_an_account_email_address_label.get_text()
-
-
-        # element = self.driver.find_element_by_xpath("//div[@id='center_column']/h1[@class='page-heading']")
-
+        # print("*A*")
         # self.assert_element_text_equal(
         #     page.create_an_account_email_address_label,
-        #     'Email address'
+        #     "Email address"
         # )
-
-
-        # self.driver.quit()
-
-
-
 
 ff = LoginTests()
 ff.test_valid_login()
