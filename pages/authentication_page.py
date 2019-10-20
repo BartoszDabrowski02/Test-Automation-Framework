@@ -10,7 +10,7 @@ class AuthenticationPage:
             locatorType="name",
         )
         self.create_an_account_email_address_label = Element(
-            locator=".//form[@id='create-account_form']//input[@name='email_create']",
+            locator=".//form[@id='create-account_form']//label[text()='Email address']",
             locatorType="xpath",
         )
         self.create_an_account_email_address_input = Input(
@@ -18,3 +18,7 @@ class AuthenticationPage:
             locatorType="xpath",
         )
 
+        self.xxx = Element(
+            locator="//div[@id='center_column']/h1[@class='page-heading']",
+            locatorType="xpath"
+        )

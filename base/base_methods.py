@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -49,23 +50,11 @@ class SeleniumDriver():
 
     def get_element(self, locator, locator_type):
         # TO-DO dodać opis
-        element = None
+        # element = None
         by_type = self.get_by_type(locator_type)
-        print(by_type)
+        # print(by_type)
         element = self.driver.find_element(by_type, locator)
-        print(element)
-        print('Element found with locator: ' + locator + ' and locator type: ' + locator_type)
         return element
-
-    #
-    # def get_element_driver(self, locator, locator_type):
-    #     # TO-DO dodać opis
-    #     element = None
-    #     by_type = self.get_by_type(locator_type)
-    #     print(by_type)
-    #     element = self.driver.find_element(by_type, locator)
-    #     print('Element found with locator: ' + locator + ' and locator type: ' + locator_type)
-    #     return element
 
     def element_click(self, locator, locatorType="id"):
         try:

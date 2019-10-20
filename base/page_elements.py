@@ -1,14 +1,11 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 
 
-class Element:
+class Element():
     def __init__(self, locator, locatorType="id"):
-        # super(Element, self).__init__()
-        # self.driver = (defined in page module)
-        # self.locator = locator
-        # self.locatorType = locatorType
+        # super(WebElement, self).__init__()
         self.element = self.driver.get_element(locator, locatorType)
-        # self.SeleniumDriver = SeleniumDriver()
 
     def click(self):
         # try:
@@ -16,6 +13,12 @@ class Element:
         # except:
         #     print("Cannot click on button with locator " + self.locator + " and locator type: " + self.locatorType)
 
+    def get_text(self):
+        return print(self.element.text)
+        # self.element.text
+
+    def send_keys(self, keys):
+        self.element.send_keys(keys)
 
 class Button(Element):
     """
