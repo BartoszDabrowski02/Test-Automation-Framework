@@ -11,7 +11,7 @@ class CreateAnAccountPage:
             description="Checkbox 'Sign up for our newsletter!'"
         )
         self.sign_up_checkbox_label = Element(
-            locator="#uniform-newsletter input#newsletter",
+            locator=".checkbox > label[for='newsletter']",
             locatorType="css",
             description="Etykieta 'Sign up for our newsletter!'"
         )

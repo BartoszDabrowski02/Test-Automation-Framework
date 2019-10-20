@@ -2,6 +2,7 @@
 from selenium import webdriver
 from pages.home_page import HomePage
 from pages.authentication_page import AuthenticationPage
+from pages.create_an_account_page import CreateAnAccountPage
 
 from base.assertions import SeleniumAssertionBasic
 
@@ -23,7 +24,7 @@ class LoginTests(SeleniumAssertionBasic):
     def set_page(self, page_module):
         return page_module(self.driver)
 
-    def test_valid_login(self):
+    def test_create_an_account(self):
         page = self.set_page(HomePage)
         page.sign_button.click()
 
@@ -35,6 +36,9 @@ class LoginTests(SeleniumAssertionBasic):
         page.create_an_account_email_address_input.send_keys(create_unique_email())
         page.create_an_account_button.click()
 
+        page = self.set_page(CreateAnAccountPage)
+        page.sign_up_checkbox.check()
+
         # print("*A*")
         # self.assert_element_text_equal(
         #     page.create_an_account_email_address_label,
@@ -42,4 +46,4 @@ class LoginTests(SeleniumAssertionBasic):
         # )
 
 ff = LoginTests()
-ff.test_valid_login()
+ff.test_create_an_account()
