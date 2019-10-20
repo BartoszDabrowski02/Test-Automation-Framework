@@ -16,17 +16,12 @@ class LoginTests(SeleniumAssertionBasic):
         baseURL = "http://automationpractice.com"
         self.browser = webdriver.Firefox()
         self.browser.maximize_window()
-        ### ustalić czy poniższe niezbędne
-        self.browser.implicitly_wait(3)
+        self.browser.implicitly_wait(10)
         self.browser.get(baseURL)
-        # driver.implicitly_wait(20)
-        ### strona na której użytkownik się znajduje
         self.driver = SeleniumDriver(self.browser)
-
 
     def set_page(self, page_module):
         return page_module(self.driver)
-
 
     def test_valid_login(self):
         page = self.set_page(HomePage)
