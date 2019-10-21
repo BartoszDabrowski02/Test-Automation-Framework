@@ -13,9 +13,17 @@ class CreateAnAccountPage:
             locator=".page-subheading",
             description="Etykieta 'YOUR PERSONAL INFORMATION'"
         )
-        self.title_radiobutton = RadioGroup(
-            locator="clearfix",
-            description="Radio grupa 'Title'"
+        # self.title_radiogroup = RadioGroup(
+        #     locator="clearfix",
+        #     description="Radio grupa 'Title'"
+        # )
+        self.title_mr_radiobutton = Radiobutton(
+            locator="#id_gender1",
+            description="Radiobutton 'Mr.'"
+        )
+        self.title_mrs_radiobutton = Radiobutton(
+            locator="#id_gender2",
+            description="Radiobutton 'Mrs.'"
         )
         self.first_name_input = Input(
             locator="#customer_firstname",
@@ -65,9 +73,16 @@ class CreateAnAccountPage:
                                        last_name=None,
                                        email=None,
                                        password=None,
+                                       # date_of_birth_days=None,
+                                       # date_of_birth_months=None,
+                                       # date_of_birth_years=None,
                                        sign_up=None,
                                        receive_special_offers=None):
         """Metoda pozwalająca wypełnić formularz YOUR PERSONAL INFORMATION"""
+        if title == "Mr":
+            self.title_mr_radiobutton.click()
+        elif title == "Mrs":
+            self.title_mrs_radiobutton.click()
         if first_name != None:
             self.first_name_input.send_keys(first_name)
         if last_name != None:
@@ -76,6 +91,12 @@ class CreateAnAccountPage:
             self.email_input.send_keys(email)
         if password != None:
             self.password_input.send_keys(password)
+        # if date_of_birth_days != None:
+        #     self.date_of_birth_days_dropdown.select_by_value(date_of_birth_days)
+        # if date_of_birth_months != None:
+        #     self.date_of_birth_months_dropdown.select_by_value(date_of_birth_months)
+        # if date_of_birth_years != None:
+        #     self.date_of_birth_years_dropdown.select_by_value(date_of_birth_years)
         if sign_up == True:
             if self.sign_up_checkbox.isSelected() == False:
                 self.sign_up_checkbox.click()

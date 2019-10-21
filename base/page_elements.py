@@ -38,7 +38,6 @@ class Input(Element):
 
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
-
     def isSelected(self):
         return self.element.is_selected()
 
@@ -50,3 +49,15 @@ class RadioGroup(Radiobutton):
 
 class Dropdown(Element):
     """Klasa obsługująca dropdowny"""
+    # def select_by_value(self, value):
+    #     self.element.select_by_value(value)
+    #
+    # def select_by_index(self, index):
+    #     self.element.select_by_index(index)
+    #
+    # def select_by_visible_text(self, text):
+    #     self.element.select_by_visible_text(text)
+
+
+
+
