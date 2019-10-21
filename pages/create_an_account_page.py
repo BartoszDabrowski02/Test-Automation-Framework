@@ -59,6 +59,13 @@ class CreateAnAccountPage:
         )
 
 
+    def fill_form(self, Title=None, First_name=None, Last_name=None, Email=None, Password=None, Sign_up=None, Receive_special_offers=None):
+        if First_name != None:
+            self.first_name_input.send_keys(First_name)
+
+
+
+
         # self. = Input(
         #     locator="",
         #     locatorType="",
@@ -76,12 +83,6 @@ class CreateAnAccountPage:
         # )
         #
         #
-
-
-
-
-
-
 
 
 
