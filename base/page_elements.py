@@ -38,8 +38,9 @@ class Input(Element):
 
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
-    def check(self):
-        self.element.click()
+
+    def isSelected(self):
+        return self.element.is_selected()
 
 class Radiobutton(Checkbox):
     """Klasa obsługująca radiobuttony"""

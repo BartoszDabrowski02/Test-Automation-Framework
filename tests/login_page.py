@@ -37,8 +37,8 @@ class LoginTests(SeleniumAssertionBasic):
         page.create_an_account_button.click()
 
         page = self.set_page(CreateAnAccountPage)
-        page.sign_up_checkbox.check()
-        page.fill_form(First_name="Kotek")
+        # page.sign_up_checkbox.click()
+        page.fill_personal_information_form(first_name="Karol", last_name="Karolski", password="qwerty5", sign_up=True)
 
         # print("*A*")
         # self.assert_element_text_equal(

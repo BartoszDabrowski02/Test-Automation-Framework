@@ -59,9 +59,33 @@ class CreateAnAccountPage:
         )
 
 
-    def fill_form(self, Title=None, First_name=None, Last_name=None, Email=None, Password=None, Sign_up=None, Receive_special_offers=None):
-        if First_name != None:
-            self.first_name_input.send_keys(First_name)
+    def fill_personal_information_form(self,
+                                       title=None,
+                                       first_name=None,
+                                       last_name=None,
+                                       email=None,
+                                       password=None,
+                                       sign_up=None,
+                                       receive_special_offers=None):
+        """Metoda pozwalająca wypełnić formularz YOUR PERSONAL INFORMATION"""
+        if first_name != None:
+            self.first_name_input.send_keys(first_name)
+        if last_name != None:
+            self.last_name_input.send_keys(last_name)
+        if email != None:
+            self.email_input.send_keys(email)
+        if password != None:
+            self.password_input.send_keys(password)
+        if sign_up == True:
+            if self.sign_up_checkbox.isSelected() == False:
+                self.sign_up_checkbox.click()
+        if receive_special_offers == True:
+            if self.receive_special_offers_checkbox.isSelected() == False:
+                self.receive_special_offers_checkbox.click()
+
+
+
+
 
 
 
