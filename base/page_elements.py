@@ -3,7 +3,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class Element:
-    def __init__(self, locator, locatorType='id', description=''):
+    def __init__(self, locator, locatorType='css', description=''):
         self.locator = locator
         self.locatorType = locatorType
         self.description = description
@@ -36,8 +36,28 @@ class Input(Element):
     def send_keys(self, keys):
         return self.element.send_keys(keys)
 
-
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
-    def check(self):
-        self.element.click()
+    def isSelected(self):
+        return self.element.is_selected()
+
+class Radiobutton(Checkbox):
+    """Klasa obsługująca radiobuttony"""
+
+class RadioGroup(Radiobutton):
+    """Klasa obsługująca grupę radiobuttonów"""
+
+class Dropdown(Element):
+    """Klasa obsługująca dropdowny"""
+    # def select_by_value(self, value):
+    #     self.element.select_by_value(value)
+    #
+    # def select_by_index(self, index):
+    #     self.element.select_by_index(index)
+    #
+    # def select_by_visible_text(self, text):
+    #     self.element.select_by_visible_text(text)
+
+
+
+
