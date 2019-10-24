@@ -16,10 +16,6 @@ class CreateAnAccountPage(UpperMenu):
             locatorType="xpath",
             description="Etykieta 'YOUR PERSONAL INFORMATION'"
         )
-        # self.title_radiogroup = RadioGroup(
-        #     locator="clearfix",
-        #     description="Radio grupa 'Title'"
-        # )
         self.title_mr_radiobutton = Radiobutton(
             locator="#id_gender1",
             description="Radiobutton 'Mr.'"
@@ -28,6 +24,10 @@ class CreateAnAccountPage(UpperMenu):
             locator="#id_gender2",
             description="Radiobutton 'Mrs.'"
         )
+        # self.radiogroup_mr_mrs=RadioGroup(
+        #     "#id_gender1",
+        #     "#id_gender2")
+
         self.first_name_input = Input(
             locator="#customer_firstname",
             description="Input 'First name'"
@@ -146,7 +146,7 @@ class CreateAnAccountPage(UpperMenu):
                                        date_of_birth_years=None,
                                        sign_up=None,
                                        receive_special_offers=None):
-        """Metoda pozwalająca wypełnić formularz YOUR PERSONAL INFORMATION"""
+        """Metoda wypełniająca formularz YOUR PERSONAL INFORMATION"""
         if title == "Mr":
             self.title_mr_radiobutton.click()
         elif title == "Mrs":
@@ -186,7 +186,7 @@ class CreateAnAccountPage(UpperMenu):
                                home_phone=None,
                                mobile_phone=None,
                                assign_an_address_alias=None):
-        """Metoda pozwalająca wypełnić formularz YOUR ADDRESS"""
+        """Metoda wypełniająca formularz YOUR ADDRESS"""
         if first_name != None:
             self.first_name_address_input.send_keys(first_name)
         if last_name != None:
@@ -200,7 +200,7 @@ class CreateAnAccountPage(UpperMenu):
         if city != None:
             self.city_input.send_keys(city)
         if state != None:
-            self.state_dropdown.select_by_value(state)
+            self.state_dropdown.select_by_visible_text(state)
         if zip_postal_code != None:
             self.zip_postal_code_input.send_keys(zip_postal_code)
         if country != None:

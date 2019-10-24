@@ -44,6 +44,7 @@ class LoginTests(SeleniumAssertionBasic):
         # element = self.browser.find_element_by_css_selector("#days")
         # sel = Select(element)
         # sel.select_by_index(10)
+
         # element = self.browser.find_element_by_id("id_state")
         # sel = Select(element)
         # sel.select_by_visible_text("California")
@@ -55,7 +56,7 @@ class LoginTests(SeleniumAssertionBasic):
         page.fill_your_address_form(first_name="Tomasz", last_name="Krążek", company="FFg", address="Polna 5/10",
                                     address_line_2="Kasztanowa 10/1, 03-494 Warszawa", zip_postal_code="12-312",
                                     additional_information="fadfasd fasdf fgbn xcvb v", home_phone="823-23-23",
-                                    mobile_phone="745 345 234", assign_an_address_alias="Kok")
+                                    mobile_phone="745 345 234", assign_an_address_alias="Kok", state="Arizona")
 
 
 ff = LoginTests()
