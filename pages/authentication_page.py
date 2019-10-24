@@ -1,9 +1,9 @@
 from base.page_elements import Element, Button, Input
+from pages.upper_menu import UpperMenu
 
-
-class AuthenticationPage:
+class AuthenticationPage(UpperMenu):
     def __init__(self, driver):
-        Element.driver = driver
+        super().__init__(driver)
 
         self.create_an_account_button = Button(
             locator="SubmitCreate",

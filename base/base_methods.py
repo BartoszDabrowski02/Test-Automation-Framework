@@ -10,7 +10,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 
 class SeleniumDriver():
-    # TO-DO dodać opis
     def __init__(self, driver):
         self.driver = driver
 
@@ -32,11 +31,9 @@ class SeleniumDriver():
         else:
             print('Locator type ' + locator_type + 'not supported.')
             return False
-        # TO-DO zrobić w ramach else zwracanie wyjątku
 
 
     # def get_element(self, locator, locator_type):
-    #     # TO-DO dodać opis
     #     element = None
     #     try:
     #         by_type = self.get_by_type(locator_type)
@@ -49,16 +46,6 @@ class SeleniumDriver():
     #     return element
 
     def get_element(self, locator, locator_type):
-        # TO-DO dodać opis
-        # element = None
         by_type = self.get_by_type(locator_type)
-        # print(by_type)
         element = self.driver.find_element(by_type, locator)
         return element
-
-    def element_click(self, locator, locatorType="id"):
-        try:
-            element = self.get_element(locator, locatorType)
-            element.click()
-        except:
-            print("Cannot click on button with locator " + locator + " and locator type: " + locatorType)

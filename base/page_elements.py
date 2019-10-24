@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-
+from selenium.webdriver.support.select import Select
 
 class Element:
     def __init__(self, locator, locatorType='css', description=''):
@@ -49,15 +49,12 @@ class RadioGroup(Radiobutton):
 
 class Dropdown(Element):
     """Klasa obsługująca dropdowny"""
-    # def select_by_value(self, value):
-    #     self.element.select_by_value(value)
-    #
-    # def select_by_index(self, index):
-    #     self.element.select_by_index(index)
-    #
-    # def select_by_visible_text(self, text):
-    #     self.element.select_by_visible_text(text)
+    def select_by_value(self, value):
+        self.element.select_by_value(value)
 
+    def select_by_index(self, index):
+        self.element.select_by_index(index)
 
-
+    def select_by_visible_text(self, text):
+        self.element.select_by_visible_text(text)
 
