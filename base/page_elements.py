@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.select import Select
 
 
 class Element:
@@ -14,50 +15,62 @@ class Element:
         return self.description
 
     @property
-    def element(self):
-        self.current_element = self.driver.get_element(self.locator, self.locatorType)
-        return self.current_element
+    def webelement(self):
+        return self.driver.get_element(self.locator, self.locatorType)
 
     def click(self):
-        self.element.click()
+        self.webelement.click()
 
     def get_text(self):
-        return self.element.text
+        return self.webelement.text
 
     def print_text(self):
-        print(self.element.text)
-
+        print(self.webelement.text)
 
 class Button(Element):
-    """    Podstawowy przycisk    """
+    """Podstawowy przycisk"""
 
 class Input(Element):
-    """    Pole tekstowe    """
+    """Pole tekstowe"""
     def send_keys(self, keys):
-        return self.element.send_keys(keys)
+        return self.webelement.send_keys(keys)
 
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
     def isSelected(self):
-        return self.element.is_selected()
+        return self.webelement.is_selected()
 
 class Radiobutton(Checkbox):
     """Klasa obsługująca radiobuttony"""
 
-class RadioGroup(Radiobutton):
+class RadioGroup:
     """Klasa obsługująca grupę radiobuttonów"""
+    # def __init__(self, radiobutton_a_locator, radiobutton_b_locator, locator_type_a, locator_type_b):
+        # self.radiogroup=[
+        #     Radiobutton(radiobutton_a),
+        #     radiobutton_b
+        # ]
 
 class Dropdown(Element):
     """Klasa obsługująca dropdowny"""
-    # def select_by_value(self, value):
-    #     self.element.select_by_value(value)
-    #
-    # def select_by_index(self, index):
-    #     self.element.select_by_index(index)
-    #
-    # def select_by_visible_text(self, text):
-    #     self.element.select_by_visible_text(text)
+    @property
+    def select_webelement(self):
+        return Select(self.webelement)
 
+    def select_by_value(self, value):
+        self.select_webelement.select_by_value(value)
 
+    def select_by_index(self, index):
+        self.select_webelement.select_by_index(index)
 
+    def select_by_visible_text(self, text):
+        self.select_webelement.select_by_visible_text(text)
 
+    def select_option(self, option):
+        if isinstance(option, int) == True:
+            self.select_webelement.select_by_index(option)
+        elif option.startswith('v_'):
+            option = option[2:]
+            self.select_webelement.select_by_value(option)
+        else:
+            self.select_webelement.select_by_visible_text(option)

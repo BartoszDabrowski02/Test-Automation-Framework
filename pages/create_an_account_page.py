@@ -1,22 +1,21 @@
 from base.page_elements import Element, Button, Input, Checkbox, RadioGroup, Radiobutton, Dropdown
+from pages.upper_menu import UpperMenu
 
 
-class CreateAnAccountPage:
+class CreateAnAccountPage(UpperMenu):
     def __init__(self, driver):
-        Element.driver = driver
+        super().__init__(driver)
 
         self.page_heading_label = Element(
             locator=".page-heading",
             description="Etykieta 'CREATE AN ACCOUNT'"
         )
+    # Sekcja "YOUR PERSONAL INFORMATION"
         self.your_personal_information_label = Element(
-            locator=".page-subheading",
+            locator="//div[@class='account_creation'][1]/h3[@class='page-subheading']",
+            locatorType="xpath",
             description="Etykieta 'YOUR PERSONAL INFORMATION'"
         )
-        # self.title_radiogroup = RadioGroup(
-        #     locator="clearfix",
-        #     description="Radio grupa 'Title'"
-        # )
         self.title_mr_radiobutton = Radiobutton(
             locator="#id_gender1",
             description="Radiobutton 'Mr.'"
@@ -25,6 +24,10 @@ class CreateAnAccountPage:
             locator="#id_gender2",
             description="Radiobutton 'Mrs.'"
         )
+        # self.radiogroup_mr_mrs=RadioGroup(
+        #     "#id_gender1",
+        #     "#id_gender2")
+
         self.first_name_input = Input(
             locator="#customer_firstname",
             description="Input 'First name'"
@@ -42,7 +45,7 @@ class CreateAnAccountPage:
             description="Input 'Password '"
         )
         self.date_of_birth_days_dropdown = Dropdown(
-            locator="days",
+            locator="#days",
             description="Dropdown Date of Birth - dni"
         )
         self.date_of_birth_months_dropdown = Dropdown(
@@ -65,7 +68,72 @@ class CreateAnAccountPage:
             locator=".page-subheading",
             description="Etykieta 'YOUR ADDRESS'"
         )
+    # Sekcja "YOUR ADDRESS"
+        self.your_address_label = Element(
+            locator="//div[@class='account_creation'][2]/h3[@class='page-subheading']",
+            locatorType="xpath",
+            description="Etykieta 'YOUR ADDRESS'"
+        )
+        self.first_name_address_input = Input(
+            locator="firstname",
+            locatorType="name",
+            description="Input 'First name'"
+        )
+        self.last_name_address_input = Input(
+            locator="firstname",
+            locatorType="name",
+            description="Input 'Last name'"
+        )
+        self.company_input = Input(
+            locator="#company",
+            description="Input 'Company'"
+        )
+        self.address_input = Input(
+            locator="[name=address1]",
+            description="Input 'Address'"
+        )
+        self.address_line_2_input = Input(
+            locator="address2",
+            locatorType="name",
+            description="Input 'Address (Line 2)'"
+        )
+        self.city_input = Input(
+            locator="#city",
+            description="Input 'City'"
+        )
+        self.state_dropdown = Dropdown(
+            locator="#id_state",
+            description="Dropdown 'State'"
+        )
+        self.zip_postal_code_input = Input(
+            locator=".uniform-input",
+            description="Input 'Zip/Postal Code'"
+        )
+        self.country_dropdown = Dropdown(
+            locator="#id_country",
+            description="Dropdown 'State'"
+        )
+        self.additional_information_input = Input(
+            locator="#other",
+            description="Input 'Additional information'"
+        )
+        self.home_phone_input = Input(
+            locator="#phone",
+            description="Input 'Home phone'"
+        )
+        self.mobile_phone_input = Input(
+            locator="#phone_mobile",
+            description="Input 'Mobile phone'"
+        )
+        self.assign_an_address_alias_input = Input(
+            locator="#alias",
+            description="Input 'Assign an address alias for future reference'"
+        )
 
+        self.register_button = Button(
+            locator="#submitAccount",
+            description="Przycisk 'Register'"
+        )
 
     def fill_personal_information_form(self,
                                        title=None,
@@ -73,12 +141,12 @@ class CreateAnAccountPage:
                                        last_name=None,
                                        email=None,
                                        password=None,
-                                       # date_of_birth_days=None,
-                                       # date_of_birth_months=None,
-                                       # date_of_birth_years=None,
+                                       date_of_birth_days=None,
+                                       date_of_birth_months=None,
+                                       date_of_birth_years=None,
                                        sign_up=None,
                                        receive_special_offers=None):
-        """Metoda pozwalająca wypełnić formularz YOUR PERSONAL INFORMATION"""
+        """Metoda wypełniająca formularz YOUR PERSONAL INFORMATION"""
         if title == "Mr":
             self.title_mr_radiobutton.click()
         elif title == "Mrs":
@@ -91,12 +159,12 @@ class CreateAnAccountPage:
             self.email_input.send_keys(email)
         if password != None:
             self.password_input.send_keys(password)
-        # if date_of_birth_days != None:
-        #     self.date_of_birth_days_dropdown.select_by_value(date_of_birth_days)
-        # if date_of_birth_months != None:
-        #     self.date_of_birth_months_dropdown.select_by_value(date_of_birth_months)
-        # if date_of_birth_years != None:
-        #     self.date_of_birth_years_dropdown.select_by_value(date_of_birth_years)
+        if date_of_birth_days != None:
+            self.date_of_birth_days_dropdown.select_option(date_of_birth_days)
+        if date_of_birth_months != None:
+            self.date_of_birth_months_dropdown.select_option(date_of_birth_months)
+        if date_of_birth_years != None:
+            self.date_of_birth_years_dropdown.select_option(date_of_birth_years)
         if sign_up == True:
             if self.sign_up_checkbox.isSelected() == False:
                 self.sign_up_checkbox.click()
@@ -104,34 +172,44 @@ class CreateAnAccountPage:
             if self.receive_special_offers_checkbox.isSelected() == False:
                 self.receive_special_offers_checkbox.click()
 
-
-
-
-
-
-
-
-        # self. = Input(
-        #     locator="",
-        #     locatorType="",
-        #     description="Input ''"
-        # )
-        # self. = Input(
-        #     locator="",
-        #     locatorType="",
-        #     description="Input ''"
-        # )
-        # self. = Input(
-        #     locator="",
-        #     locatorType="",
-        #     description="Input ''"
-        # )
-        #
-        #
-
-
-
-        # self.sign_up_checkbox_label = Element(
-        #     locator=".checkbox > label[for='newsletter']",
-        #     description="Etykieta 'Sign up for our newsletter!'"
-        # )
+    def fill_your_address_form(self,
+                               first_name=None,
+                               last_name=None,
+                               company=None,
+                               address=None,
+                               address_line_2=None,
+                               city=None,
+                               state=None,
+                               zip_postal_code=None,
+                               country=None,
+                               additional_information=None,
+                               home_phone=None,
+                               mobile_phone=None,
+                               assign_an_address_alias=None):
+        """Metoda wypełniająca formularz YOUR ADDRESS"""
+        if first_name != None:
+            self.first_name_address_input.send_keys(first_name)
+        if last_name != None:
+            self.last_name_address_input.send_keys(last_name)
+        if company != None:
+            self.company_input.send_keys(company)
+        if address != None:
+            self.address_input.send_keys(address)
+        if address_line_2 != None:
+            self.address_line_2_input.send_keys(address_line_2)
+        if city != None:
+            self.city_input.send_keys(city)
+        if state != None:
+            self.state_dropdown.select_option(state)
+        if zip_postal_code != None:
+            self.zip_postal_code_input.send_keys(zip_postal_code)
+        if country != None:
+            self.country_dropdown.select_option(country)
+        if additional_information != None:
+            self.additional_information_input.send_keys(additional_information)
+        if home_phone != None:
+            self.home_phone_input.send_keys(home_phone)
+        if mobile_phone != None:
+            self.mobile_phone_input.send_keys(mobile_phone)
+        if assign_an_address_alias != None:
+            self.assign_an_address_alias_input.send_keys(assign_an_address_alias)

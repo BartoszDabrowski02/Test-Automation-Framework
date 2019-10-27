@@ -9,8 +9,6 @@ from base.assertions import SeleniumAssertionBasic
 from base.base_methods import SeleniumDriver
 from base.support import create_unique_email
 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 
 class LoginTests(SeleniumAssertionBasic):
     def __init__(self):
@@ -26,7 +24,7 @@ class LoginTests(SeleniumAssertionBasic):
 
     def test_create_an_account(self):
         page = self.set_page(HomePage)
-        page.sign_button.click()
+        page.sign_in_button.click()
 
         page = self.set_page(AuthenticationPage)
         self.assert_element_text_equal(
@@ -37,12 +35,14 @@ class LoginTests(SeleniumAssertionBasic):
         page.create_an_account_button.click()
 
         page = self.set_page(CreateAnAccountPage)
-        page.fill_personal_information_form(title="Mrs", first_name="Karol", last_name="Karolski", password="qwerty5",
-                                            date_of_birth_months=2, sign_up=True)
-
-
-
-
+        page.fill_personal_information_form(date_of_birth_days=4, date_of_birth_months=8, date_of_birth_years="2000\u00A0\u00A0",
+                                            title="Mrs", first_name="Karol", last_name="Karolski", password="qwerty5",
+                                            sign_up=True)
+        page.fill_your_address_form(first_name="Tomasz", last_name="Krążek", company="FFg", address="Polna 5/10",
+                                    address_line_2="Kasztanowa 10/1, 03-494 Warszawa", zip_postal_code="12-312",
+                                    additional_information="fadfasd fasdf fgbn xcvb v", home_phone="823-23-23",
+                                    mobile_phone="745 345 234", assign_an_address_alias="Kok", state="Arizona",
+                                    country="v_21")
 
 
 ff = LoginTests()
