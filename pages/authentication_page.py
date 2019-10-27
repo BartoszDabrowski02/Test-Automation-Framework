@@ -27,7 +27,6 @@ class AuthenticationPage(UpperMenu):
             description="Etykieta 'AUTHENTICATION'"
         )
 
-
         # self.create_account_error_label = Element(
         #     locator="",
         #     locatorType=""

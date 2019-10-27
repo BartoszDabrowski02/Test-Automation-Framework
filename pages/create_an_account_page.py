@@ -45,7 +45,7 @@ class CreateAnAccountPage(UpperMenu):
             description="Input 'Password '"
         )
         self.date_of_birth_days_dropdown = Dropdown(
-            locator="days",
+            locator="#days",
             description="Dropdown Date of Birth - dni"
         )
         self.date_of_birth_months_dropdown = Dropdown(
@@ -160,11 +160,11 @@ class CreateAnAccountPage(UpperMenu):
         if password != None:
             self.password_input.send_keys(password)
         if date_of_birth_days != None:
-            self.date_of_birth_days_dropdown.select_by_value(date_of_birth_days)
+            self.date_of_birth_days_dropdown.select_option(date_of_birth_days)
         if date_of_birth_months != None:
-            self.date_of_birth_months_dropdown.select_by_value(date_of_birth_months)
+            self.date_of_birth_months_dropdown.select_option(date_of_birth_months)
         if date_of_birth_years != None:
-            self.date_of_birth_years_dropdown.select_by_value(date_of_birth_years)
+            self.date_of_birth_years_dropdown.select_option(date_of_birth_years)
         if sign_up == True:
             if self.sign_up_checkbox.isSelected() == False:
                 self.sign_up_checkbox.click()
@@ -200,11 +200,11 @@ class CreateAnAccountPage(UpperMenu):
         if city != None:
             self.city_input.send_keys(city)
         if state != None:
-            self.state_dropdown.select_by_visible_text(state)
+            self.state_dropdown.select_option(state)
         if zip_postal_code != None:
             self.zip_postal_code_input.send_keys(zip_postal_code)
         if country != None:
-            self.country_dropdown.select_by_value(country)
+            self.country_dropdown.select_option(country)
         if additional_information != None:
             self.additional_information_input.send_keys(additional_information)
         if home_phone != None:

@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
 
+
 class Element:
     def __init__(self, locator, locatorType='css', description=''):
         self.locator = locator
@@ -26,12 +27,11 @@ class Element:
     def print_text(self):
         print(self.webelement.text)
 
-
 class Button(Element):
-    """    Podstawowy przycisk    """
+    """Podstawowy przycisk"""
 
 class Input(Element):
-    """    Pole tekstowe    """
+    """Pole tekstowe"""
     def send_keys(self, keys):
         return self.webelement.send_keys(keys)
 
@@ -51,11 +51,8 @@ class RadioGroup:
         #     radiobutton_b
         # ]
 
-
-
 class Dropdown(Element):
     """Klasa obsługująca dropdowny"""
-
     @property
     def select_webelement(self):
         return Select(self.webelement)
@@ -69,3 +66,11 @@ class Dropdown(Element):
     def select_by_visible_text(self, text):
         self.select_webelement.select_by_visible_text(text)
 
+    def select_option(self, option):
+        if isinstance(option, int) == True:
+            self.select_webelement.select_by_index(option)
+        elif option.startswith('v_'):
+            option = option[2:]
+            self.select_webelement.select_by_value(option)
+        else:
+            self.select_webelement.select_by_visible_text(option)
