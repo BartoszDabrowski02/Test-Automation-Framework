@@ -8,8 +8,7 @@ class Element:
         self.locator = locator
         self.locatorType = locatorType
         self.description = description
-        # W przyszłości - wait_for_visible
-        # self.element = self.driver.get_element(locator, locatorType)
+
 
     def __str__(self):
         return self.description
@@ -34,6 +33,9 @@ class Input(Element):
     """Pole tekstowe"""
     def send_keys(self, keys):
         return self.webelement.send_keys(keys)
+
+    def get_value(self):
+        return self.webelement.get_attribute("value")
 
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""

@@ -39,11 +39,14 @@ class LoginTests(SeleniumAssertionBasic):
                                             title="Mrs", first_name="Karol", last_name="Karolski", password="qwerty5",
                                             sign_up=True)
         page.fill_your_address_form(first_name="Tomasz", last_name="Krążek", company="FFg", address="Polna 5/10",
-                                    address_line_2="Kasztanowa 10/1, 03-494 Warszawa", zip_postal_code="12-312",
+                                    address_line_2="Kasztanowa 10/1, 03-494 Warszawa", zip_postal_code="12312",
                                     additional_information="fadfasd fasdf fgbn xcvb v", home_phone="823-23-23",
                                     mobile_phone="745 345 234", assign_an_address_alias="Kok", state="Arizona",
-                                    country="v_21")
-
+                                    country="v_21", city="Warsaw")
+        self.assert_element_value_equal(
+            page.zip_postal_code_input,
+            "12312",
+        )
 
 ff = LoginTests()
 ff.test_create_an_account()
