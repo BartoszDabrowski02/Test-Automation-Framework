@@ -43,10 +43,7 @@ class LoginTests(SeleniumAssertionBasic):
                                     additional_information="fadfasd fasdf fgbn xcvb v", home_phone="823-23-23",
                                     mobile_phone="745 345 234", assign_an_address_alias="Kok", state="Arizona",
                                     country="v_21", city="Warsaw")
-        self.assert_element_value_equal(
-            page.zip_postal_code_input,
-            "12312",
-        )
+
 
 ff = LoginTests()
 ff.test_create_an_account()
