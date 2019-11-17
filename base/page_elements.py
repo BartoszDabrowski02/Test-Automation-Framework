@@ -26,6 +26,9 @@ class Element:
     def print_text(self):
         print(self.webelement.text)
 
+    def is_visible(self):
+        return self.webelement.is_displayed()
+
 class Button(Element):
     """Podstawowy przycisk"""
 

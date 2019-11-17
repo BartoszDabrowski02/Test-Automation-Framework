@@ -111,7 +111,7 @@ class CreateAnAccountPage(UpperMenu):
         )
         self.country_dropdown = Dropdown(
             locator="#id_country",
-            description="Dropdown 'State'"
+            description="Dropdown 'Country'"
         )
         self.additional_information_input = Input(
             locator="#other",
