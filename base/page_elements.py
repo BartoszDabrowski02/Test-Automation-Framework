@@ -9,7 +9,6 @@ class Element:
         self.locatorType = locatorType
         self.description = description
 
-
     def __str__(self):
         return self.description
 
@@ -28,6 +27,9 @@ class Element:
 
     def is_visible(self):
         return self.webelement.is_displayed()
+
+    def get_attribute(self, attribute):
+        return self.webelement.get_attribute(attribute)
 
 class Button(Element):
     """Podstawowy przycisk"""

@@ -4,6 +4,7 @@ DEFAULT_ASSERION_MESSAGES = {
     'assert_element_value_contains' : 'Wartość elementu »%s« nie zawiera »%s«.',
     'assert_element_value_starts' : 'Wartość elementu »%s« nie zaczyna się od »%s«.',
     'assert_element_is_visible' : 'Element »%s« jest niewidoczny.',
+    'assert_element_css_attribute_equal': 'Oczekiwana wartość atrybutu »%s« pola »%s« to »%s« a jest »%s«.',
 }
 
 def _default_assertion_message(method_name):
@@ -39,3 +40,8 @@ class SeleniumAssertionBasic:
     def assert_element_is_visible(self, element, msg=None):
         if not element.is_visible():
             assertion_message("assert_element_is_visible", element, msg=msg)
+
+    def assert_element_css_attribute_equal(self, element, attribute, excepted_value, msg=None):
+        actual_value = element.get_attribute(attribute)
+        if excepted_value != actual_value:
+            assertion_message("assert_element_css_attribute_equal", attribute, element, excepted_value, actual_value)
