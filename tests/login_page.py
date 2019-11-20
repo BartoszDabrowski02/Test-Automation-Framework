@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from selenium import webdriver
 from pages.home_page import HomePage
 from pages.authentication_page import AuthenticationPage
