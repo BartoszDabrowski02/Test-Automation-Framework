@@ -44,7 +44,7 @@ class Input(Element):
 
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
-    def isSelected(self):
+    def is_selected(self):
         return self.webelement.is_selected()
 
 class Radiobutton(Checkbox):
