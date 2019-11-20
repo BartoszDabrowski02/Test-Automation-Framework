@@ -5,6 +5,7 @@ DEFAULT_ASSERION_MESSAGES = {
     'assert_element_value_starts' : 'Wartość elementu »%s« nie zaczyna się od »%s«.',
     'assert_element_is_visible' : 'Element »%s« jest niewidoczny.',
     'assert_element_is_checked' : 'Element »%s nie jest zaznaczony',
+    'assert_element_is_not_checked': 'Element »%s jest zaznaczony',
     'assert_element_css_attribute_equal': 'Oczekiwana wartość atrybutu »%s« pola »%s« to »%s« a jest »%s«.',
 }
 
@@ -45,6 +46,10 @@ class SeleniumAssertionBasic:
     def assert_element_is_checked(self, element, msg=None):
         if not element.is_selected():
             assertion_message("assert_element_is_checked", element, msg=msg)
+
+    def assert_element_is_not_checked(self, element, msg=None):
+        if element.is_selected():
+            assertion_message("assert_element_is_not_checked", element, msg=msg)
 
     def assert_element_css_attribute_equal(self, element, attribute, excepted_value, msg=None):
         actual_value = element.get_attribute(attribute)
