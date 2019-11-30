@@ -129,7 +129,6 @@ class CreateAnAccountPage(UpperMenu):
             locator="#alias",
             description="Input 'Assign an address alias for future reference'"
         )
-
         self.register_button = Button(
             locator="#submitAccount",
             description="Przycisk 'Register'"
@@ -166,10 +165,10 @@ class CreateAnAccountPage(UpperMenu):
         if date_of_birth_years != None:
             self.date_of_birth_years_dropdown.select_option(date_of_birth_years)
         if sign_up == True:
-            if self.sign_up_checkbox.isSelected() == False:
+            if self.sign_up_checkbox.is_selected() == False:
                 self.sign_up_checkbox.click()
         if receive_special_offers == True:
-            if self.receive_special_offers_checkbox.isSelected() == False:
+            if self.receive_special_offers_checkbox.is_selected() == False:
                 self.receive_special_offers_checkbox.click()
 
     def fill_your_address_form(self,

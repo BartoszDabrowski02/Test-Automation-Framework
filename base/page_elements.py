@@ -42,6 +42,9 @@ class Input(Element):
     def get_value(self):
         return self.webelement.get_attribute("value")
 
+    def clear(self):
+        self.webelement.clear()
+
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
     def is_selected(self):
@@ -81,3 +84,9 @@ class Dropdown(Element):
             self.select_webelement.select_by_value(option)
         else:
             self.select_webelement.select_by_visible_text(option)
+
+    def get_options(self):
+        # TODO
+        print(self.select_webelement)
+
+
