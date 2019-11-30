@@ -20,7 +20,7 @@ def _default_assertion_message(method_name):
     return DEFAULT_ASSERION_MESSAGES[method_name]
 
 def assertion_message(assertion_name, *args, msg=None):
-    if msg is None:
+    if msg == None:
         msg = _default_assertion_message(assertion_name).format(*args,)
     raise Exception(msg)
 
@@ -62,14 +62,12 @@ class SeleniumAssertionBasic:
     def assert_element_css_attribute_equal(self, element, attribute, excepted_value, msg=None):
         actual_value = element.get_attribute(attribute)
         if excepted_value != actual_value:
-            assertion_message("assert_element_css_attribute_equal", attribute, element, excepted_value, actual_value, msg)
+            assertion_message("assert_element_css_attribute_equal", attribute, element, excepted_value, actual_value, msg=msg)
 
     def assert_element_value_is_date(self, element, msg=None):
         actual_value = element.get_value()
-        print(actual_value)
-        print(type(actual_value))
         if re.search(regex["DATE"], actual_value) == None:
-            assertion_message("assert_element_value_is_date", element, actual_value, msg)
+            assertion_message("assert_element_value_is_date", element, actual_value, msg=msg)
 
     def assert_date_earlier(self, element, date_to_compare, msg=None):
         actuale_value = element.get_value()
