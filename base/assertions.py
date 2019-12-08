@@ -5,7 +5,8 @@ regex = {
     }
 
 DEFAULT_ASSERION_MESSAGES = {
-    'assert_element_date_earlier': 'Oczekujemy, iż data elementu {0} będzie wcześniejsza niż {1}. (Aktualna data to: {2}).',
+    'assert_date_earlier': 'Oczekujemy, iż data elementu {0} będzie wcześniejsza niż {1}. (Aktualna data to: {2}).',
+    'assert_date_later': 'Oczekujemy, iż data elementu {0} będzie późniejsza niż {1}. (Aktualna data to: {2}).',
     'assert_element_text_equal' : 'Oczekujemy, iż treścią elementu {0} będzie {1}. (Aktualna treść to: {2}).',
     'assert_element_value_equal' : 'Oczekujemy, iż wartością elementu {0} będzie {1}. (Aktualna wartość to: {2}).',
     'assert_element_value_contains' : 'Oczekujemy, iż wartość elementu {0}« będzie zawierała {1}. (Aktualna wartość to: {2}).',
@@ -70,11 +71,20 @@ class SeleniumAssertionBasic:
         if re.search(regex["DATE"], actual_value) == None:
             assertion_message("assert_element_value_is_date", element, actual_value, msg=msg)
 
-    def assert_element_date_earlier(self, element, date_to_compare, msg=None):
+    def assert_date_earlier(self, element, date_to_compare, msg=None):
         actuale_value = element.get_value()
         y, m, d = [x for x in actuale_value.split("-")]
         actuale_date = y + m + d
         y, m, d = [x for x in date_to_compare.split("-")]
         compare_date = y + m + d
         if actuale_date > compare_date:
-            assertion_message("assert_element_date_earlier", element, date_to_compare, actuale_value, msg=msg)
+            assertion_message("assert_date_earlier", element, date_to_compare, actuale_value, msg=msg)
+
+    def assert_date_later(self, element, date_to_compare, msg=None):
+        actuale_value = element.get_value()
+        y, m, d = [x for x in actuale_value.split("-")]
+        actuale_date = y + m + d
+        y, m, d = [x for x in date_to_compare.split("-")]
+        compare_date = y + m + d
+        if actuale_date < compare_date:
+            assertion_message("assert_date_later", element, date_to_compare, actuale_value, msg=msg)
