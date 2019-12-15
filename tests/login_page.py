@@ -42,6 +42,16 @@ class LoginTests(SeleniumAssertionBasic):
                                     additional_information="fadfasd fasdf fgbn xcvb v", home_phone="823-23-23",
                                     mobile_phone="745 345 234", assign_an_address_alias="Kok", state="Arizona",
                                     country="v_21", city="Warsaw")
+        self.assert_element_is_checked(
+            page.sign_up_checkbox,
+        )
+        page.last_name_input.clear()
+        page.fill_personal_information_form(last_name="1991-01-02")
+        self.assert_date_earlier(
+            page.last_name_input,
+            "1991-01-11"
+        )
+        self.driver.screenshot("test")
 
 
 ff = LoginTests()

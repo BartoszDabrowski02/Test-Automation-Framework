@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
+import time
+import os
 
 
 class SeleniumDriver():
-    def __init__(self, driver):
-        self.driver = driver
+    def __init__(self, browser):
+        self.browser = browser
 
     def get_by_type(self, locator_type):
         locator_type = locator_type.lower()
@@ -25,5 +27,14 @@ class SeleniumDriver():
 
     def get_element(self, locator, locator_type):
         by_type = self.get_by_type(locator_type)
-        element = self.driver.find_element(by_type, locator)
+        element = self.browser.find_element(by_type, locator)
         return element
+
+    def screenshot(self, description):
+        file_name = description + ".png"
+        directory = "../screenshots/"
+        relative_file_name = directory + file_name
+        if not os.path.exists("../screenshots/"):
+            print("Nie istnieje lokalizacja więc tworzę!")
+            os.makedirs(directory)
+        self.browser.save_screenshot(relative_file_name)
