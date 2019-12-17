@@ -80,7 +80,7 @@ class CreateAnAccountPage(UpperMenu):
             description="Input 'First name'"
         )
         self.last_name_address_input = Input(
-            locator="firstname",
+            locator="lastname",
             locatorType="name",
             description="Input 'Last name'"
         )
