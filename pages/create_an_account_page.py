@@ -10,7 +10,7 @@ class CreateAnAccountPage(UpperMenu):
             locator=".page-heading",
             description="Etykieta 'CREATE AN ACCOUNT'"
         )
-    # Sekcja "YOUR PERSONAL INFORMATION"
+    # Section "YOUR PERSONAL INFORMATION"
         self.your_personal_information_label = Element(
             locator="//div[@class='account_creation'][1]/h3[@class='page-subheading']",
             locatorType="xpath",
@@ -68,7 +68,7 @@ class CreateAnAccountPage(UpperMenu):
             locator=".page-subheading",
             description="Etykieta 'YOUR ADDRESS'"
         )
-    # Sekcja "YOUR ADDRESS"
+    # Section "YOUR ADDRESS"
         self.your_address_label = Element(
             locator="//div[@class='account_creation'][2]/h3[@class='page-subheading']",
             locatorType="xpath",
@@ -80,7 +80,7 @@ class CreateAnAccountPage(UpperMenu):
             description="Input 'First name'"
         )
         self.last_name_address_input = Input(
-            locator="firstname",
+            locator="lastname",
             locatorType="name",
             description="Input 'Last name'"
         )
@@ -145,7 +145,7 @@ class CreateAnAccountPage(UpperMenu):
                                        date_of_birth_years=None,
                                        sign_up=None,
                                        receive_special_offers=None):
-        """Metoda wypełniająca formularz YOUR PERSONAL INFORMATION"""
+        """This method allows to fill YOUR PERSONAL INFORMATION form"""
         if title == "Mr":
             self.title_mr_radiobutton.click()
         elif title == "Mrs":
@@ -185,7 +185,7 @@ class CreateAnAccountPage(UpperMenu):
                                home_phone=None,
                                mobile_phone=None,
                                assign_an_address_alias=None):
-        """Metoda wypełniająca formularz YOUR ADDRESS"""
+        """This method allows to fill YOUR ADDRESS form"""
         if first_name != None:
             self.first_name_address_input.send_keys(first_name)
         if last_name != None:

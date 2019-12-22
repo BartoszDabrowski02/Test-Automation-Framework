@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-import time
 import os
+from datetime import datetime
 
 
 class SeleniumDriver():
@@ -31,10 +31,12 @@ class SeleniumDriver():
         return element
 
     def screenshot(self, description):
-        file_name = description + ".png"
+        file_name = str(datetime.now().strftime("_%Y%m%d_%H%M%S_")) + description + ".png"
         directory = "../screenshots/"
         relative_file_name = directory + file_name
         if not os.path.exists("../screenshots/"):
-            print("Nie istnieje lokalizacja więc tworzę!")
             os.makedirs(directory)
         self.browser.save_screenshot(relative_file_name)
+
+    def set_page(self, page_module):
+        return page_module(self)

@@ -37,6 +37,7 @@ class Button(Element):
 class Input(Element):
     """Pole tekstowe"""
     def send_keys(self, keys):
+        self.clear()
         return self.webelement.send_keys(keys)
 
     def get_value(self):

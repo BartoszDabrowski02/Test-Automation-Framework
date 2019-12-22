@@ -1,4 +1,4 @@
-from base.page_elements import Element, Button
+from base.page_elements import Element, Button, Input
 from pages.upper_menu import UpperMenu
 
 class HomePage(UpperMenu):
@@ -6,6 +6,14 @@ class HomePage(UpperMenu):
         super().__init__(driver)
 
         self.best_sellers_button = Button(
-            locator=".blockbestsellers",
-            locatorType="css",
+            ".blockbestsellers",
+            "css"
+        )
+        self.search_input = Input(
+            "search_query",
+            "name"
+        )
+        self.search_button = Button(
+            "submit_search",
+            "name"
         )

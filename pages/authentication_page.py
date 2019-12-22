@@ -26,8 +26,7 @@ class AuthenticationPage(UpperMenu):
             locatorType="xpath",
             description="Etykieta 'AUTHENTICATION'"
         )
-
-        # self.create_account_error_label = Element(
-        #     locator="",
-        #     locatorType=""
-        # )
+        self.create_account_alert_label = Element(
+            "#create_account_error li",
+            description="Etykieta z informacją o nieprawidłowej wartości w polu 'Email address'"
+        )
