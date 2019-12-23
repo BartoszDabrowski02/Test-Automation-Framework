@@ -15,7 +15,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 class CartTests(SeleniumAssertionBasic):
     def __init__(self):
         baseURL = "http://automationpractice.com"
-
         self.browser = webdriver.Firefox()
         self.browser.maximize_window()
         self.browser.implicitly_wait(10)
@@ -29,14 +28,7 @@ class CartTests(SeleniumAssertionBasic):
 
         page = self.driver.set_page(SearchResultsPage)
         self.driver.screenshot("Searching results")
-        # page.add_to_cart_1_button.click()
-        # page.sort_by_dropdown.click()
-        # time.sleep(1)
-        # page.sort_by_dropdown.click()
-        # print(page.sort_by_dropdown.webelement)
-        ActionChains(self.browser).move_to_element(page.add_to_cart_1_button.webelement).move_to_element(page.add_to_cart_1_button.webelement).click().perform()
-            # .move_to_element(page.add_to_cart_1_button.locator).click().perform()
-        # .move_to_element(page.add_to_cart_1_button).click()
+        page.add_item_to_cart(self.browser, 1)
 
 
 class LoginTests(SeleniumAssertionBasic):

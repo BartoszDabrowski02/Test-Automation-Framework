@@ -31,7 +31,7 @@ class SeleniumDriver():
         return element
 
     def screenshot(self, description):
-        file_name = str(datetime.now().strftime("_%Y%m%d_%H%M%S_")) + description + ".png"
+        file_name = str(datetime.now().strftime("%Y%m%d_%H%M%S_")) + description + ".png"
         directory = "../screenshots/"
         relative_file_name = directory + file_name
         if not os.path.exists("../screenshots/"):

@@ -1,6 +1,7 @@
 from base.page_elements import Element, Button, Input
 from pages.upper_menu import UpperMenu
 
+
 class MyAccountPage(UpperMenu):
     def __init__(self, driver):
         super().__init__(driver)
