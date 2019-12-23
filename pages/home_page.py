@@ -1,4 +1,4 @@
-from base.page_elements import Element, Button, Input
+from base.page_elements import Button, Input
 from pages.upper_menu import UpperMenu
 
 

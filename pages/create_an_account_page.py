@@ -1,4 +1,4 @@
-from base.page_elements import Element, Button, Input, Checkbox, RadioGroup, Radiobutton, Dropdown
+from base.page_elements import Label, Button, Input, Checkbox, Radiobutton, Dropdown
 from pages.upper_menu import UpperMenu
 
 
@@ -6,15 +6,15 @@ class CreateAnAccountPage(UpperMenu):
     def __init__(self, driver):
         super().__init__(driver)
 
-        self.page_heading_label = Element(
+        self.page_heading_label = Label(
             locator=".page-heading",
-            description="Etykieta 'CREATE AN ACCOUNT'"
+            description="Label 'CREATE AN ACCOUNT'"
         )
-    # Section "YOUR PERSONAL INFORMATION"
-        self.your_personal_information_label = Element(
+        # Section "YOUR PERSONAL INFORMATION"
+        self.your_personal_information_label = Label(
             locator="//div[@class='account_creation'][1]/h3[@class='page-subheading']",
             locatorType="xpath",
-            description="Etykieta 'YOUR PERSONAL INFORMATION'"
+            description="Label 'YOUR PERSONAL INFORMATION'"
         )
         self.title_mr_radiobutton = Radiobutton(
             locator="#id_gender1",
@@ -24,10 +24,6 @@ class CreateAnAccountPage(UpperMenu):
             locator="#id_gender2",
             description="Radiobutton 'Mrs.'"
         )
-        # self.radiogroup_mr_mrs=RadioGroup(
-        #     "#id_gender1",
-        #     "#id_gender2")
-
         self.first_name_input = Input(
             locator="#customer_firstname",
             description="Input 'First name'"
@@ -64,15 +60,15 @@ class CreateAnAccountPage(UpperMenu):
             locator="#uniform-optin input#optin",
             description="Checkbox 'Sign up for our newsletter!'"
         )
-        self.your_address_label = Element(
+        self.your_address_label = Label(
             locator=".page-subheading",
-            description="Etykieta 'YOUR ADDRESS'"
+            description="Label 'YOUR ADDRESS'"
         )
-    # Section "YOUR ADDRESS"
-        self.your_address_label = Element(
+        # Section "YOUR ADDRESS"
+        self.your_address_label = Label(
             locator="//div[@class='account_creation'][2]/h3[@class='page-subheading']",
             locatorType="xpath",
-            description="Etykieta 'YOUR ADDRESS'"
+            description="Label 'YOUR ADDRESS'"
         )
         self.first_name_address_input = Input(
             locator="firstname",
@@ -131,20 +127,22 @@ class CreateAnAccountPage(UpperMenu):
         )
         self.register_button = Button(
             locator="#submitAccount",
-            description="Przycisk 'Register'"
+            description="Button 'Register'"
         )
 
-    def fill_personal_information_form(self,
-                                       title=None,
-                                       first_name=None,
-                                       last_name=None,
-                                       email=None,
-                                       password=None,
-                                       date_of_birth_days=None,
-                                       date_of_birth_months=None,
-                                       date_of_birth_years=None,
-                                       sign_up=None,
-                                       receive_special_offers=None):
+    def fill_personal_information_form(
+        self,
+        title=None,
+        first_name=None,
+        last_name=None,
+        email=None,
+        password=None,
+        date_of_birth_days=None,
+        date_of_birth_months=None,
+        date_of_birth_years=None,
+        sign_up=None,
+        receive_special_offers=None
+    ):
         """This method allows to fill YOUR PERSONAL INFORMATION form"""
         if title == "Mr":
             self.title_mr_radiobutton.click()
@@ -171,20 +169,22 @@ class CreateAnAccountPage(UpperMenu):
             if self.receive_special_offers_checkbox.is_selected() == False:
                 self.receive_special_offers_checkbox.click()
 
-    def fill_your_address_form(self,
-                               first_name=None,
-                               last_name=None,
-                               company=None,
-                               address=None,
-                               address_line_2=None,
-                               city=None,
-                               state=None,
-                               zip_postal_code=None,
-                               country=None,
-                               additional_information=None,
-                               home_phone=None,
-                               mobile_phone=None,
-                               assign_an_address_alias=None):
+    def fill_your_address_form(
+        self,
+        first_name=None,
+        last_name=None,
+        company=None,
+        address=None,
+        address_line_2=None,
+        city=None,
+        state=None,
+        zip_postal_code=None,
+        country=None,
+        additional_information=None,
+        home_phone=None,
+        mobile_phone=None,
+        assign_an_address_alias=None
+    ):
         """This method allows to fill YOUR ADDRESS form"""
         if first_name != None:
             self.first_name_address_input.send_keys(first_name)

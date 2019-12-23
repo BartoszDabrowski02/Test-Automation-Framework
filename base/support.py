@@ -7,7 +7,7 @@ def create_unique_email():
     return unique_email
 
 def generate_unique_word():
-    """This function generate word"""
+    """This function generate random combination of letters"""
     LETTERS = 'abcdefghijklmnopqrstuvwxyz'
     word_length = random.randint(3, 8)
     word = ''
@@ -19,7 +19,7 @@ def generate_unique_word():
     return word
 
 def generate_unique_id():
-    """This function generate id"""
+    """This function generate id number"""
     return str(random.randint(1000, 9999))
 
 def generate_email_domain():

@@ -5,17 +5,19 @@ regex = {
     }
 
 DEFAULT_ASSERION_MESSAGES = {
-    'assert_date_earlier': 'Oczekujemy, iż data elementu {0} będzie wcześniejsza niż {1}. (Aktualna data to: {2}).',
-    'assert_date_later': 'Oczekujemy, iż data elementu {0} będzie późniejsza niż {1}. (Aktualna data to: {2}).',
-    'assert_element_text_equal' : 'Oczekujemy, iż treścią elementu {0} będzie {1}. (Aktualna treść to: {2}).',
-    'assert_element_value_equal' : 'Oczekujemy, iż wartością elementu {0} będzie {1}. (Aktualna wartość to: {2}).',
-    'assert_element_value_contains' : 'Oczekujemy, iż wartość elementu {0}« będzie zawierała {1}. (Aktualna wartość to: {2}).',
-    'assert_element_value_starts' : 'Oczekujemy, iż wartość elementu {0} będzie zaczynała się od {1}. (Aktualna wartość to: {2}).',
-    'assert_element_is_visible' : 'Oczekujemy, iż element {0} będzie widoczny.',
-    'assert_element_is_checked' : 'Oczekujemy, iż element {0} będzie zaznaczony.',
-    'assert_element_is_not_checked': 'Oczekujemy, iż element {0} będzie niezaznaczony.',
-    'assert_element_css_attribute_equal': 'Oczekujemy, iż wartość atrybutu {0} pola {1} to {2}. (Aktualna wartość to: {3}).',
-    'assert_element_value_is_date' : 'Oczekujemy, iż wartość elementu {0} będzie datą. (Aktualna wartość to: {1}).',
+    'assert_date_earlier': "We expect that element's {0} date will be earlier than {1}.\nCurrent date: {2}.",
+    'assert_date_later': "We expect that element's {0} date will be later than {1}.\nCurrent date: {2}.",
+    'assert_element_text_equal' : "We expect that element's {0} text will be {1}.\nCurrent text: {2}.",
+    'assert_element_text_contains': "We expect that element's {0} text contains {1}.\nCurrent text: {2}.",
+    'assert_element_value_equal' : "We expect that element's {0} value will be {1}.\nCurrent value: {2}.",
+    'assert_element_value_contains' : "We expect that element's {0} value will contains {1}.\nCurrent value: {2}.",
+    'assert_element_value_starts' : "We expect that element's {0} value will start {1}.\nCurrent value: {2}.",
+    'assert_element_is_visible' : "We expect that element {0} will be visible.",
+    'assert_element_is_checked' : "We expect that element {0} will be checked.",
+    'assert_element_is_not_checked': "We expect that element {0} will be not checked.",
+    'assert_element_css_attribute_equal': "We expect that element's {1} attribute {0} will be {2}.\nCurrent value: {3}.",
+    'assert_element_value_is_date' : "We expect that element's {0} value will be dateattribute {0}.\nCurrent value: {1}.",
+    'assert_value_is_greater_then' : "We expect that value {0} will be greater than {1}.\nCurrent value: {0}."
 }
 
 def _default_assertion_message(method_name):
@@ -32,6 +34,11 @@ class SeleniumAssertionBasic:
     def assert_element_text_equal(self, element, excepted_value, msg=None):
         actual_text = element.get_text()
         if actual_text != excepted_value:
+            assertion_message("assert_element_text_equal", element, excepted_value, actual_text, msg=msg)
+
+    def assert_element_text_contains(self, element, excepted_value, msg=None):
+        actual_text = element.get_text()
+        if actual_text not in excepted_value:
             assertion_message("assert_element_text_equal", element, excepted_value, actual_text, msg=msg)
 
     def assert_element_value_equal(self, element, excepted_value, msg=None):
@@ -88,3 +95,7 @@ class SeleniumAssertionBasic:
         compare_date = y + m + d
         if actuale_date < compare_date:
             assertion_message("assert_date_later", element, date_to_compare, actuale_value, msg=msg)
+
+    def assert_value_is_greater_then(self, value_greater, value_lower, msg=None):
+        if value_greater <= value_lower:
+            assertion_message("assert_value_is_greater_then", value_greater, value_lower, msg=msg)

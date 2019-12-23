@@ -1,5 +1,3 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.select import Select
 
 
@@ -31,8 +29,16 @@ class Element:
     def get_attribute(self, attribute):
         return self.webelement.get_attribute(attribute)
 
+
+class Label(Element):
+    """Klasa obsługująca etykiety"""
+    pass
+
+
 class Button(Element):
     """Podstawowy przycisk"""
+    pass
+
 
 class Input(Element):
     """Pole tekstowe"""
@@ -46,13 +52,16 @@ class Input(Element):
     def clear(self):
         self.webelement.clear()
 
+
 class Checkbox(Element):
     """Klasa obsługująca checkboxy"""
     def is_selected(self):
         return self.webelement.is_selected()
 
+
 class Radiobutton(Checkbox):
     """Klasa obsługująca radiobuttony"""
+    pass
 
 class RadioGroup:
     """Klasa obsługująca grupę radiobuttonów"""
@@ -61,6 +70,13 @@ class RadioGroup:
         #     Radiobutton(radiobutton_a),
         #     radiobutton_b
         # ]
+    # def __init__(self, *args):
+    #     self.radio_buttons_list = [args]
+    #
+    # def check_option(self, radiobutton):
+    #     self.radio_buttons_list[radiobutton].click()
+    pass
+
 
 class Dropdown(Element):
     """Klasa obsługująca dropdowny"""
@@ -80,14 +96,9 @@ class Dropdown(Element):
     def select_option(self, option):
         if isinstance(option, int) == True:
             self.select_webelement.select_by_index(option)
-        elif option.startswith('v_'):
-            option = option[2:]
-            self.select_webelement.select_by_value(option)
         else:
             self.select_webelement.select_by_visible_text(option)
 
     def get_options(self):
         # TODO
-        print(self.select_webelement)
-
-
+        pass

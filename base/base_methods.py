@@ -1,6 +1,7 @@
-from selenium.webdriver.common.by import By
 import os
 from datetime import datetime
+
+from selenium.webdriver.common.by import By
 
 
 class SeleniumDriver():
