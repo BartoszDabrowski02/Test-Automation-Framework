@@ -1,4 +1,4 @@
-from base.page_elements import Label, Button, Input, Checkbox, Radiobutton, Dropdown
+from base.page_elements import Label, Button, Input, Checkbox, Dropdown, RadioGroup
 from pages.upper_menu import UpperMenu
 
 
@@ -16,13 +16,10 @@ class CreateAnAccountPage(UpperMenu):
             locatorType="xpath",
             description="Label 'YOUR PERSONAL INFORMATION'"
         )
-        self.title_mr_radiobutton = Radiobutton(
-            locator="#id_gender1",
-            description="Radiobutton 'Mr.'"
-        )
-        self.title_mrs_radiobutton = Radiobutton(
-            locator="#id_gender2",
-            description="Radiobutton 'Mrs.'"
+        self.title_radiogroup = RadioGroup(
+            locator="//label[text()='Title']//following-sibling::div",
+            locatorType="xpath",
+            description="Title radio group 'Mr.'/'Mrs.'"
         )
         self.first_name_input = Input(
             locator="#customer_firstname",
@@ -144,10 +141,8 @@ class CreateAnAccountPage(UpperMenu):
         receive_special_offers=None
     ):
         """This method allows to fill YOUR PERSONAL INFORMATION form"""
-        if title == "Mr":
-            self.title_mr_radiobutton.click()
-        elif title == "Mrs":
-            self.title_mrs_radiobutton.click()
+        if title is not None:
+            self.title_radiogroup.choose_option(title)
         if first_name != None:
             self.first_name_input.send_keys(first_name)
         if last_name != None:
