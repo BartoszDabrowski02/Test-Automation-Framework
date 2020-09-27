@@ -36,7 +36,7 @@ class Label(Element):
 
 
 class Button(Element):
-    """Podstawowy przycisk"""
+    """Class operating the buttons"""
     pass
 
 
@@ -63,23 +63,24 @@ class Radiobutton(Checkbox):
     """Klasa obsługująca radiobuttony"""
     pass
 
-class RadioGroup:
-    """Klasa obsługująca grupę radiobuttonów"""
-    # def __init__(self, radiobutton_a_locator, radiobutton_b_locator, locator_type_a, locator_type_b):
-        # self.radiogroup=[
-        #     Radiobutton(radiobutton_a),
-        #     radiobutton_b
-        # ]
-    # def __init__(self, *args):
-    #     self.radio_buttons_list = [args]
-    #
-    # def check_option(self, radiobutton):
-    #     self.radio_buttons_list[radiobutton].click()
-    pass
+class RadioGroup(Element):
+    """Class operating the radio groups"""
+    def prepare_options(self, list_of_options):
+        return {option.text: option for option in list_of_options}
+
+    def __init__(self, locator, locatorType='css', description=''):
+        super().__init__(locator, locatorType, description)
+        self.radio_options = self.prepare_options(self.driver.get_elements(self.locator, self.locatorType))
+
+    def choose_option(self, option):
+        try:
+            self.radio_options[option].click()
+        except KeyError:
+            print('No such element: {}'.format(option))
 
 
 class Dropdown(Element):
-    """Klasa obsługująca dropdowny"""
+    """Class operating the dropdowns"""
     @property
     def select_webelement(self):
         return Select(self.webelement)

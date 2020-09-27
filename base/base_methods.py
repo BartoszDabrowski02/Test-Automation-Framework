@@ -30,6 +30,11 @@ class SeleniumDriver():
         element = self.browser.find_element(by_type, locator)
         return element
 
+    def get_elements(self, locator, locator_type):
+        by_type = self.get_by_type(locator_type)
+        elements = self.browser.find_elements(by_type, locator)
+        return elements
+
     def screenshot(self, description):
         file_name = description + str(datetime.now().strftime("_%Y%m%d_%H%M%S")) + ".png"
         directory = "../screenshots/"

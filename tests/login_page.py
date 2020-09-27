@@ -10,6 +10,7 @@ from pages.search_results_page import SearchResultsPage
 
 
 class LoginTests(TestConfiguration, SeleniumAssertionBasic):
+
     def test_create_an_account(self):
         page = self.driver.set_page(HomePage)
         page.sign_in_button.click()
@@ -24,16 +25,15 @@ class LoginTests(TestConfiguration, SeleniumAssertionBasic):
 
         page = self.driver.set_page(CreateAnAccountPage)
         page.fill_personal_information_form(
+            title="Mrs.",
             date_of_birth_days=4,
             date_of_birth_months=8,
             date_of_birth_years="2000\u00A0\u00A0",
-            title="Mrs",
             first_name="Tamara",
             last_name="Morrison",
             password="qwerty5",
             sign_up=True
         )
-        self.driver.screenshot("Filled personal information")
         page.fill_your_address_form(
             first_name="Tamara",
             last_name="Morrison",
@@ -49,6 +49,7 @@ class LoginTests(TestConfiguration, SeleniumAssertionBasic):
             country="United States",
             city="Detroit"
         )
+        self.driver.screenshot("Filled personal information")
         self.assert_element_is_checked(
             page.sign_up_checkbox,
         )
@@ -79,6 +80,7 @@ class LoginTests(TestConfiguration, SeleniumAssertionBasic):
 
 
 class CartTests(TestConfiguration, SeleniumAssertionBasic):
+
     def test_add_product_to_cart(self):
         page = self.driver.set_page(HomePage)
         page.search_input.send_keys("dress")
